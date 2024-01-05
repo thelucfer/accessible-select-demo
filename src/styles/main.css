@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;0,900;1,400&family=Fira+Sans:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap');
+@import 'reset.css';
+
+:root {
+  --color-primary: hsl(238 70% 57%);
+  --color-primary-variant: hsl(238 70% 37%);
+
+  --color-secondary: hsl(358 70% 57%);
+  --color-secondary-variant: hsl(358 70% 77%);
+
+  --color-background: #0d0628;
+
+  --color-surface-variant: #2a0944;
+  --color-surface: #202030;
+
+  --color-foreground: #fdfdff;
+
+  --color-contrast: #ffbd00;
+  --color-contrast-variant: #ec9ded;
+}
+
+/* body */
+body {
+  font-family: 'Barlow', sans-serif;
+  font-size: 1rem;
+
+  color: var(--color-foreground);
+  background: var(--color-surface);
+
+  min-height: 100vh;
+  @supports (height: 100dvh) {
+    min-height: 100dvh;
+  }
+
+  & > #root {
+    min-height: 100vh;
+    @supports (height: 100dvh) {
+      min-height: 100dvh;
+    }
+
+    display: grid;
+  }
+}
+
+/* scrollbar */
+::-webkit-scrollbar-track {
+  background-color: var(--color-background);
+}
+
+::-webkit-scrollbar {
+  background-color: var(--color-background);
+  width: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+}
+
+::-webkit-scrollbar-button {
+  background-color: var(--color-primary-variant);
+}
