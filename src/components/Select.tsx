@@ -184,7 +184,7 @@ export const Select = <T,>({
 
   return (
     <div id={selectId} className={styles.container} ref={inputRef}>
-      <label htmlFor={`${selectId}__input`} className={styles.outer_label}>
+      <label htmlFor={`${selectId}__input`} className={styles.label}>
         {selectName}
       </label>
       <input
@@ -195,22 +195,9 @@ export const Select = <T,>({
         onBlur={() => handleBlur()}
         onKeyDown={handleKeyDown}
         placeholder={placeholder}
-        role="combobox"
-        aria-haspopup="listbox"
-        aria-expanded={showOptions}
-        aria-controls={`${selectId}__list`}
-        aria-activedescendant={`${selectId}__list-option--${filteredOptions[currentFocusedOption]?.value}`}
-        id={`${selectId}__input`}
       />
       {isLoading && <div className={styles['loading-indicator']}>...</div>}
-      <button
-        type="button"
-        aria-expanded={showOptions}
-        aria-controls={`${selectId}__list`}
-        tabIndex={-1}
-        onClick={handleFocus}
-        className={styles.button_toggle}
-      >
+      <button type="button" tabIndex={-1} onClick={handleFocus} className={styles.button_toggle}>
         {!showOptions ? (
           <svg width="18" height="16" aria-hidden="true" focusable="false">
             <polygon
@@ -257,15 +244,12 @@ export const Select = <T,>({
                 key={`${selectId}__list-option--${option.value}`}
                 role="option"
                 aria-selected={index === currentFocusedOption}
-                id={`${selectId}__list-option--${option.value}`}
               >
                 <button
                   type="button"
                   className={styles.option__list__item__button}
                   onClick={() => handleOptionClick(option)}
                   onMouseEnter={() => setCurrentFocusedOption(index)}
-                  aria-label={option.label}
-                  id={option.label}
                 >
                   {getOption(option, renderOption)}
                 </button>

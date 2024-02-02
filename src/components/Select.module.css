@@ -14,11 +14,13 @@
 .label {
   grid-row: 1 / span 1;
   grid-column: 1 / span all;
-  font-size: var(--font-super-small);
-  font-family: var(--font-tertiary);
+  font-size: 0.75rem;
+  font-family: var(--font-secondary);
   letter-spacing: 0.1rem;
 
   text-transform: uppercase;
+  padding-left: 0.5rem;
+  padding-bottom: 0.25rem;
 
   @media (--media-large) {
     font-size: var(--font-very-small);
@@ -135,15 +137,4 @@
   color: var(--color-foreground);
   place-items: center;
   text-align: center;
-}
-
-.outer_label {
-  grid-row: 1 / span 1;
-  grid-column: 1 / span all;
-
-  padding-block: 0.5rem 0.1rem;
-  padding-inline: 0.25rem 0rem;
-  font: 'Fira Sans', sans-serif;
-  font-size: 1rem;
-  font-weight: 700;
 }
