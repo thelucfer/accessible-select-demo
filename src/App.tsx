@@ -16,6 +16,7 @@ const App = () => {
     <main className={styles.main}>
       <Select
         selectId="word-select"
+        selectName="favorite word"
         values={words}
         toOption={({ word }) => ({
           label: word,

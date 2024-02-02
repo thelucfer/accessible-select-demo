@@ -17,6 +17,9 @@
 
   --color-contrast: #ffbd00;
   --color-contrast-variant: #ec9ded;
+
+  --font-primary: 'Barlow', sans-serif;
+  --font-secondary: 'Fira Sans', sans-serif;
 }
 
 /* body */

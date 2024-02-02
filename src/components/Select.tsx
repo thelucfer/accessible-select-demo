@@ -52,7 +52,7 @@ export const Select = <T,>({
   const [shouldUpdateInput, setShouldUpdateInput] = useState(true);
   const [currentFocusedOption, setCurrentFocusedOption] = useState(-1);
 
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLDivElement>(null);
   const debounce = useDebounce();
 
   const options = values.map(toOption);
@@ -184,6 +184,9 @@ export const Select = <T,>({
 
   return (
     <div id={selectId} className={styles.container} ref={inputRef}>
+      <label htmlFor={`${selectId}__input`} className={styles.outer_label}>
+        {selectName}
+      </label>
       <input
         className={styles.input}
         value={inputValue}
@@ -197,6 +200,7 @@ export const Select = <T,>({
         aria-expanded={showOptions}
         aria-controls={`${selectId}__list`}
         aria-activedescendant={`${selectId}__list-option--${filteredOptions[currentFocusedOption]?.value}`}
+        id={`${selectId}__input`}
       />
       {isLoading && <div className={styles['loading-indicator']}>...</div>}
       <button
@@ -237,7 +241,6 @@ export const Select = <T,>({
           </svg>
         )}
       </button>
-
       {showOptions && (
         <ul
           id={`${selectId}__list`}
