@@ -12,6 +12,7 @@ export type SelectProps<T> = {
   inputValue: string;
   setInputValue: (newValue: string) => void;
   selectId: string;
+  selectName: string;
   placeholder?: string;
   values: Array<T> | undefined;
   toOption: (value: T) => SelectOption;
@@ -38,6 +39,7 @@ export const Select = <T,>({
   inputValue,
   setInputValue,
   selectId,
+  selectName,
   placeholder = 'Select an option...',
   values = [],
   toOption,
@@ -194,6 +196,7 @@ export const Select = <T,>({
         aria-haspopup="listbox"
         aria-expanded={showOptions}
         aria-controls={`${selectId}__list`}
+        aria-activedescendant={`${selectId}__list-option--${filteredOptions[currentFocusedOption]?.value}`}
       />
       {isLoading && <div className={styles['loading-indicator']}>...</div>}
       <button
@@ -204,11 +207,44 @@ export const Select = <T,>({
         onClick={handleFocus}
         className={styles.button_toggle}
       >
-        {showOptions ? '▲' : '▼'}
+        {!showOptions ? (
+          <svg width="18" height="16" aria-hidden="true" focusable="false">
+            <polygon
+              className="arrow"
+              strokeWidth="0"
+              fillOpacity="0.75"
+              fill="currentcolor"
+              points="3,6 15,6 9,14"
+            />
+          </svg>
+        ) : (
+          <svg
+            width="18"
+            height="16"
+            aria-hidden="true"
+            focusable="false"
+            style={{
+              transform: 'rotate(180deg)',
+            }}
+          >
+            <polygon
+              className="arrow"
+              strokeWidth="0"
+              fillOpacity="0.75"
+              fill="currentcolor"
+              points="3,6 15,6 9,14"
+            />
+          </svg>
+        )}
       </button>
 
       {showOptions && (
-        <ul id={`${selectId}__list`} className={styles.option__list} role="listbox">
+        <ul
+          id={`${selectId}__list`}
+          className={styles.option__list}
+          aria-label={selectName}
+          role="listbox"
+        >
           {isLoading && <li className={styles.loading_options_placeholder}>loading options...</li>}
 
           {filteredOptions?.length > 0 &&
@@ -225,6 +261,8 @@ export const Select = <T,>({
                   className={styles.option__list__item__button}
                   onClick={() => handleOptionClick(option)}
                   onMouseEnter={() => setCurrentFocusedOption(index)}
+                  aria-label={option.label}
+                  id={option.label}
                 >
                   {getOption(option, renderOption)}
                 </button>

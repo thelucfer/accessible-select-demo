@@ -112,6 +112,10 @@
   &[aria-selected='true'] {
     cursor: pointer;
     background: var(--color-surface-variant);
+
+    outline: transparent inset 1px;
+    outline-offset: -1px;
+    border: 0;
   }
 }
 
